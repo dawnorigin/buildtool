@@ -1,17 +1,79 @@
-FROM dawnorigin/buildenv
+FROM mizzy/centos-4.8-i386
 
-RUN pip install conan
-
-RUN gem install ceedling
-
-RUN set -ex \
-	\
-	&& mkdir /cfg \
-	&& cd /tmp \
-  && curl -L https://github.com/danmar/cppcheck/archive/1.80.tar.gz | tar xz \
-  && cd cppcheck-1.80 \
-  && SRCDIR=build CFGDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function" make \
-  && SRCDIR=build CFGDIR=/cfg HAVE_RULES=yes CXXFLAGS="-O2 -DNDEBUG -Wall -Wno-sign-compare -Wno-unused-function" make install \
-  && cd \
-  && rm -r /tmp/cppcheck-1.80
-  
+RUN yum -y install \
+	tar \
+	unzip \
+	wget \
+	curl \
+	git \
+	bzip2 \
+	file \
+	procps \
+	pkgconfig \
+	make \
+	gcc \
+	autoconf \
+	gettext \
+	automake \
+	automake16 \
+	automake17 \
+	automake14 \
+	automake15 \
+	gcc-c++ \
+	gdb \
+	libtool \
+	rpm-build \
+	strace \
+	pstack \
+	binutils \
+	diffstat \
+	bison \
+	flex \
+	cdecl \
+	splint \
+	indent \
+	ctags \
+	cscope \
+	patchutils \
+	texinfo \
+	elfutils \
+	elfutils-libelf \
+	oprofile\ 
+	doxygen \
+	cproto \
+	kernel-devel \
+	kernel-smp-devel \
+	kernel-hugemem-devel \
+	perl-XML-SAX \
+	perl-XML-Parser \
+	perl-XML-Dumper \
+	perl-XML-Twig \
+	perl-LDAP \
+	perl-XML-LibXML \
+	perl-XML-LibXML-Common \
+	perl-XML-Grove \
+	perl-XML-Encoding \
+	perl-Crypt-SSLeay \
+	perl-XML-NamespaceSupport \
+	perl-TimeDate \
+	dmalloc \
+	ElectricFence \
+	valgrind \
+	valgrind-callgrind \
+	elfutils-devel \
+	glibc-devel \
+	bzip2-devel \
+	python-devel \
+	openssl-devel \
+	curl-devel \
+	rpm-devel \
+	zlib-devel \
+	libusb-devel \
+	libxml2-devel \
+	pam-devel \
+	openssl-devel \
+	pcre-devel \
+	pciutils-devel \
+# clean up
+	&& rm -rf /var/cache/yum/* \
+	&& yum clean all
