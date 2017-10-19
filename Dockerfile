@@ -83,7 +83,7 @@ RUN yum -y install \
 
 # Install openssl
 RUN set -ex \
-	&& cd /tmp
+	&& cd /tmp \
 	&& wget --no-check-certificate https://www.openssl.org/source/openssl-1.0.2l.tar.gz \
 	&& tar xzf openssl-1.0.2l.tar.gz \
 	&& cd openssl-1.0.2l \
